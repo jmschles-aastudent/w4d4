@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606223014) do
+ActiveRecord::Schema.define(:version => 20130606231358) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20130606223014) do
     t.text     "lyrics"
     t.boolean  "bonus"
     t.integer  "album_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.boolean  "activated"
+    t.string   "user_type"
+    t.string   "session_token"
+    t.string   "activation_token"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end

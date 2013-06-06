@@ -1,0 +1,11 @@
+<h3><%= @track.title %></h3>
+
+<h4>Track no. <%= @track.ord %> from
+	<%= link_to @album.name, album_url(@album) %> by
+	<%= link_to @band.name, band_url(@band) %>
+</h4>
+
+<p>Bonus track: <%= @track.bonus ? "yes" : "no" %>
+
+
+

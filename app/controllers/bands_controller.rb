@@ -30,11 +30,13 @@ class BandsController < ApplicationController
 		else
 			flash[:errors] ||= []
 			flash[:errors] << "Band update unsuccessful."
-			redirect_to edit_band_url
+			redirect_to edit_band_url(@band)
 		end
 	end
 
 	def edit
+		@band = Band.find(params[:id])
+		render :edit
 	end
 
 	def destroy

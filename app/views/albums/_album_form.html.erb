@@ -1,0 +1,37 @@
+<% action_url = (method == :edit) ? album_url(album) : albums_url %>
+
+<form action="<%= action_url %>", method="post">
+	<% if method == :edit %>
+		<input type="hidden" value="put" name="_method">
+	<% end %>
+
+	<label>Band</label>
+	<select name="album[band_id]">
+		<% bands.each do |band| %>
+			<option value="<%= band.id %>" <%'selected' if !album.nil? && album.band == band %>><%= band.name %></option>
+		<% end %>
+	</select>
+
+	<br />
+
+	<label for="name">Album Name</label>
+	<input type="text" id="name" name="album[name]" value="<%= album.name unless album.nil? %>">
+
+	<br />
+
+	<label for="year">Year</label>
+	<input type="text" id="year" name="album[year]" value="<%= album.year unless album.nil? %>">
+
+	<br />
+
+	<label>Recording Type</label>
+	<select name="album[recording_type]">
+		<option value="studio">Studio</option>
+		<option value="live">Live</option>
+	</select>
+
+	<br />
+
+	<input type="submit" value="Submit">
+
+</form>

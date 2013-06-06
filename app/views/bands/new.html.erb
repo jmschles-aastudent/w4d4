@@ -4,4 +4,5 @@
 
 <h3>Create New Band</h3>
 
-<%= render :partial => "band_form", :band => @band, :hidden_method => "post" %>
+<%= render :partial => "band_form", :locals => { :band => @band,
+																								 :method => :post } %>

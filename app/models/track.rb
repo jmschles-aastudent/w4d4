@@ -1,22 +1,28 @@
 class Track < ActiveRecord::Base
-  attr_accessible :ord, :title, :album
+  attr_accessible :ord, :title, :album, :bonus
 
-  before_create :set_bonus_to_false
+  before_create :set_bonus_default
 
-  validates :ord, :presence => true,
-  								:uniqueness => { :scope => :album_id }
+  validates :ord, :presence => true
+  								# :uniqueness => { :scope => :album_id }
   								# :within => 1..self.album.tracks.count
 
- 	validates :title, :presence => true,
- 										:uniqueness => { :scope => :album_id }
+ 	validates :title, :presence => true
+ 										# :uniqueness => { :scope => :album_id }
 
  	validates :album_id, :presence => true
-
- 	validates :bonus, :presence => true
-
+ 	
   belongs_to :album
 
-  def set_bonus_to_false
-  	self.bonus = false
+  def set_bonus_default
+    self.bonus ||= false
+    true
   end
+end
+
+def save_track
+	reload!
+	album = Album.first
+	track = Track.new( :title => "cats", :ord => 1, :album => album )
+	track.save!
 end

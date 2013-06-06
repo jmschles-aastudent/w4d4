@@ -5,13 +5,15 @@ class AlbumsController < ApplicationController
 	end
 
 	def show
+		@bands = Band.all
 		@album = Album.find(params[:id])
-		@album = Band.find(@album.band_id)
+		@tracks = @album.tracks# .sort_by { |track| track.ord }
+		@band = Band.find(@album.band_id)
 	end
 
 	def create
 		@bands = Band.all
-		@album = Album.create([params[:album]])
+		@album = Album.create(params[:album])
 		if @album.save
 			redirect_to album_url(@album)
 		else
@@ -22,6 +24,7 @@ class AlbumsController < ApplicationController
 	end
 
 	def new
+		@bands = Band.all
 	end
 
 	def update
@@ -31,11 +34,13 @@ class AlbumsController < ApplicationController
 		else
 			flash[:errors] ||= []
 			flash[:errors] << "Album update unsuccessful."
-			redirect_to edit_album_url
+			redirect_to edit_album_url(@album)
 		end
 	end
 
 	def edit
+		@bands = Band.all
+		@album = Album.find(params[:id])
 	end
 
 	def destroy

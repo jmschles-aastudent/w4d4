@@ -1,0 +1,9 @@
+<% flash[:errors].try(:each) do |error| %>
+	<%= error %>
+<% end %>
+
+<h3>Create New Album</h3>
+
+<%= render :partial => "album_form", :locals => { :bands => @bands,
+																									:album => @album,
+																								  :method => :post } %>

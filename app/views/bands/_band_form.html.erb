@@ -1,8 +1,12 @@
-<form action="<%= bands_url %>", method="post">
-	<input type="hidden" value="<% hidden_method %>" name="_method">
+<% action_url = (method == :edit) ? band_url(band) : bands_url %>
+
+<form action="<%= action_url %>", method="post">
+	<% if method == :edit %>
+		<input type="hidden" value="put" name="_method">
+	<% end %>
 
 	<label for="name">Band Name</label>
-	<input type="text" id="name" name="band[name]">
+	<input type="text" id="name" name="band[name]" value="<%= band.name unless band.nil? %>">
 
 	<input type="submit" value="Submit">
 

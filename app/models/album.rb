@@ -1,7 +1,7 @@
 class Album < ActiveRecord::Base
 	attr_accessible :name, :year, :band, :recording_type, :band_id
 
-	before_create :set_recording_type_default
+	before_validation :set_recording_type_default
 
   validates :name, :presence => true,
   								 :uniqueness => { :scope => :band_id }

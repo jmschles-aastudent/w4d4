@@ -40,8 +40,9 @@ class BandsController < ApplicationController
 	end
 
 	def destroy
+		@bands = Band.all
 		Band.find(params[:id]).destroy
-		render :index
+		redirect_to bands_url
 	end
 
 end

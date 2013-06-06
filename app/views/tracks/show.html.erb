@@ -7,5 +7,14 @@
 
 <p>Bonus track: <%= @track.bonus ? "yes" : "no" %>
 
+<div>
+	<%= button_to "Delete Track", track_url(@track), :method => "delete" %>
+</div>
+
+<div>
+	<p> Lyrics: </p>
+	<%= @track.lyrics %>
+</div>
+
 
 

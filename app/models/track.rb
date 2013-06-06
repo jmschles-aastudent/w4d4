@@ -1,5 +1,5 @@
 class Track < ActiveRecord::Base
-  attr_accessible :ord, :title, :album, :bonus
+  attr_accessible :ord, :title, :album, :bonus, :lyrics, :album_id
 
   before_create :set_bonus_default
 

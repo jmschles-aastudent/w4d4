@@ -1,0 +1,43 @@
+<% action_url = (method == :edit) ? track_url(track) : tracks_url %>
+
+<form action="<%= action_url %>", method="post">
+	<% if method == :edit %>
+		<input type="hidden" value="put" name="_method">
+	<% end %>
+
+	<label>Album</label>
+	<select name="track[album_id]">
+		<% albums.each do |album| %>
+			<option value="<%= album.id %>" <%'selected' if !track.nil? && track.album == album %>><%= album.name %></option>
+		<% end %>
+	</select>
+
+	<br />
+
+	<label for="title">Track Title</label>
+	<input type="text" id="title" name="track[title]" value="<%= track.title unless track.nil? %>">
+
+	<br />
+
+	<label for="ord">Track Number</label>
+	<input type="text" id="ord" name="track[ord]" value="<%= track.ord unless track.nil? %>">
+
+	<br />
+
+	<label>Bonus Track?</label>
+	<select name="track[bonus]">
+		<option value="no">No</option>
+		<option value="yes">Yes</option>
+	</select>
+
+	<br />
+
+	<label for="lyrics">Lyrics</label>
+	<textarea name="track[lyrics]" id="lyrics" value="<%= track.lyrics unless track.nil? %>">
+	</textarea>
+
+	<br />
+
+	<input type="submit" value="Submit">
+
+</form>

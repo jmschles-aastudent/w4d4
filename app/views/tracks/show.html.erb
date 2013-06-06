@@ -16,5 +16,11 @@
 	<%= @track.lyrics %>
 </div>
 
+<div>
+	<h4>Notes</h4>
+	<%= render :partial => "notes/note", :locals => { :notes => @notes,
+																										:track => @track } %>
+</div>
+
 
 

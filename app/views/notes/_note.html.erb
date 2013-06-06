@@ -1,0 +1,17 @@
+<ul>
+	<% notes.each do |note| %>
+		<li><%= note.text %></li>
+		<%= button_to "Delete note", note_url(note), :method => "delete" %>
+	<% end %>
+</ul>
+
+<p>New note</p>
+
+<form action="<%= notes_url %>" method="post">
+	<input type="hidden" name="note[track_id]" value="<%= track.id %>">
+
+	<textarea name="note[text]" id="text"></textarea>
+
+	<br />
+	<input type="submit" value="Submit">
+</form>

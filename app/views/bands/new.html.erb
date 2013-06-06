@@ -1,0 +1,7 @@
+<% flash[:errors].try(:each) do |error| %>
+	<%= error %>
+<% end %>
+
+<h3>Create New Band</h3>
+
+<%= render :partial => "band_form", :band => @band, :hidden_method => "post" %>

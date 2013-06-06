@@ -4,16 +4,15 @@ class Track < ActiveRecord::Base
   before_create :set_bonus_to_false
 
   validates :ord, :presence => true,
-  								:uniqueness => { :scope => :album_id },
-  								:within => { 1..self.album.tracks.count }
+  								:uniqueness => { :scope => :album_id }
+  								# :within => 1..self.album.tracks.count
 
  	validates :title, :presence => true,
  										:uniqueness => { :scope => :album_id }
 
- 	validates :album, :presence => true
+ 	validates :album_id, :presence => true
 
  	validates :bonus, :presence => true
-
 
   belongs_to :album
 

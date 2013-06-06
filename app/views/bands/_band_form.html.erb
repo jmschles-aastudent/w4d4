@@ -1,0 +1,9 @@
+<form action="<%= bands_url %>", method="post">
+	<input type="hidden" value="<% hidden_method %>" name="_method">
+
+	<label for="name">Band Name</label>
+	<input type="text" id="name" name="band[name]">
+
+	<input type="submit" value="Submit">
+
+</form>

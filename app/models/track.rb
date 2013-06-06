@@ -13,6 +13,7 @@ class Track < ActiveRecord::Base
  	validates :album_id, :presence => true
  	
   belongs_to :album
+  has_many :notes
 
   def set_bonus_default
     self.bonus ||= false
@@ -20,9 +21,9 @@ class Track < ActiveRecord::Base
   end
 end
 
-def save_track
-	reload!
-	album = Album.first
-	track = Track.new( :title => "cats", :ord => 1, :album => album )
-	track.save!
-end
+# def save_track
+# 	reload!
+# 	album = Album.first
+# 	track = Track.new( :title => "cats", :ord => 1, :album => album )
+# 	track.save!
+# end

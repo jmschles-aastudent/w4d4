@@ -1,5 +1,7 @@
 class BandsController < ApplicationController
 
+	before_filter :current_user
+
 	def index
 		@bands = Band.all
 	end

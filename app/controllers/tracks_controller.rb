@@ -1,5 +1,7 @@
 class TracksController < ApplicationController
 
+	before_filter :current_user
+
 	def index
 		@tracks = Track.all
 	end

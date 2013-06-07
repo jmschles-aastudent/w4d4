@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		if @user.save
 			msg = ActivationMailer.activation_email(@user)
 			msg.deliver!
-			redirect_to bands_url
+			redirect_to new_session_url
 		else
 			flash[:errors] ||= []
 			flash[:errors] << "Invalid email/password combination."

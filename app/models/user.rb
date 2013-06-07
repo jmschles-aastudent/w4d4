@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :session_token
+  attr_accessible :email, :password, :session_token, :activated, :user_type
 
   before_validation :set_activated_default,
   									:set_user_type_default,
@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   validates :password_digest, :presence => true
 
+  has_many :notes, :foreign_key => :author_id
+
   
   def activation_valid?(query) 	
   	self.activation_token == query
@@ -22,6 +24,10 @@ class User < ActiveRecord::Base
 
   def activated?
   	self.activated
+  end
+
+  def admin?
+    self.user_type == "admin"
   end
 
   def password=(password)

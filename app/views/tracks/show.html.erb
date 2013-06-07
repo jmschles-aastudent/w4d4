@@ -8,7 +8,9 @@
 <p>Bonus track: <%= @track.bonus ? "yes" : "no" %>
 
 <div>
-	<%= button_to "Delete Track", track_url(@track), :method => "delete" %>
+	<% if @current_user.admin? %>
+		<%= button_to "Delete Track", track_url(@track), :method => "delete" %>
+	<% end %>
 </div>
 
 <div>
@@ -19,7 +21,8 @@
 <div>
 	<h4>Notes</h4>
 	<%= render :partial => "notes/note", :locals => { :notes => @notes,
-																										:track => @track } %>
+																										:track => @track,
+																										:current_user => @current_user } %>
 </div>
 
 

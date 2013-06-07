@@ -21,6 +21,10 @@ Track.create([{ :title => "Cats", :ord => 1, :album => Album.first },
 	{ :title => "Skulls", :ord => 1, :album => Album.find(2) },
 	{ :title => "Crossbones", :ord => 2, :album => Album.find(2) }])
 
-Note.create([{ :track => Track.first, :text => "This song is awesome!" },
-	{ :track => Track.first, :text => "Trippy, maaaaaan..." },
-	{ :track => Track.find(3), :text => "This song is crap." } ])
+User.create([{ :email => "bob@bob.com", :password => "password", :activated => true },
+	{ :email => "ted@ted.com", :password => "password", :activated => true },
+	{ :email => "admin@admin.com", :password => "password", :activated => true, :user_type => "admin" } ])
+
+Note.create([{ :track => Track.first, :text => "This song is awesome!", :author => User.first },
+	{ :track => Track.first, :text => "Trippy, maaaaaan...", :author => User.first },
+	{ :track => Track.find(3), :text => "This song is crap.", :author => User.find(2) } ])

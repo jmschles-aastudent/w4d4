@@ -1,8 +1,16 @@
 class SessionsController < ApplicationController
 
+	skip_before_filter :require_login, :only => [:new, :create]
+
 	def create
 		@user = User.find_by_email(params[:user][:email])
-		if @user.verify_password?(params[:user][:password])
+		if !@user.nil? && @user.verify_password?(params[:user][:password])
+			unless @user.activated?
+				flash[:errors] ||= []
+				flash[:errors] << "Must activate to proceed."
+				render :new
+				return
+			end
 			@user.generate_session_token
 			session[:session_token] = @user.session_token
 

@@ -3,6 +3,8 @@
 <ul>
 	<% @bands.each do |band| %>
 		<li><%= link_to band.name, band_url(band) %></li>
-		<%= button_to "Delete Band", band_url(band), :method => "delete" %>
+		<% if @current_user.admin? %>
+			<%= button_to "Delete Band", band_url(band), :method => "delete" %>
+		<% end %>
 	<% end %>
 </ul>

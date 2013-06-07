@@ -1,7 +1,8 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :session_token, :activated, :user_type
+  attr_accessible :email, :password, :session_token
+                  # :activated, :user_type (Uncomment to seed database)
 
   before_validation :set_activated_default,
   									:set_user_type_default,

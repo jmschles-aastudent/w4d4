@@ -1,6 +1,7 @@
 <% action_url = (method == :edit) ? band_url(band) : bands_url %>
 
 <form action="<%= action_url %>", method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<% if method == :edit %>
 		<input type="hidden" value="put" name="_method">
 	<% end %>

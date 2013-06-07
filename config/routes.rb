@@ -4,6 +4,12 @@ MusicApp::Application.routes.draw do
   resources :albums
   resources :tracks
   resources :notes, :only => [:create, :destroy]
+  resources :users, :only => [:create, :new, :destroy] do
+    collection do
+      get 'activate'
+    end
+  end
+  resource :session, :only => [:create, :new, :destroy]
 
 end
 

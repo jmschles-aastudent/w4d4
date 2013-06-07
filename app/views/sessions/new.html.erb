@@ -1,0 +1,7 @@
+<% flash[:errors].try(:each) do |error| %>
+	<%= error %>
+<% end %>
+
+<h3>Sign in</h3>
+
+<%= render :partial => "shared/sign_in", :locals => { :intent => "Sign in" } %>
